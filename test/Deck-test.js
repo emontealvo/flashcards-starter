@@ -29,6 +29,22 @@ describe('Deck', function() {
     expect(deck.cardSet).to.deep.equal([card1, card2, card3, card4])
   });
 
+  it('should be empty if no cards are given', function() {
+    const deck = new Deck();
+    expect(deck.cardSet).to.deep.equal([])
+  })
+
+  it('should only store cards', function() {
+    const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+    const card2 = "Here was this really funny joke my friend once told me, but now it's gone"
+    const card3 = "Jk, there wasn't ever a joke"
+    const card4 = new Card (4, "Which iteration method returns an array of the same length as the original array?", ["map()", "forEach()", "reduce()"], "map()")
+
+    const deck = new Deck ([card1, card2, card3, card4]);
+
+    expect(deck.cardSet).to.have.members([card1, card4])
+  })
+
   it('should be able to count set of cards', function() {
 
     const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
@@ -40,6 +56,8 @@ describe('Deck', function() {
 
     expect(deck.countCards()).to.equal(4)
   });
+
+
 });
 
 
