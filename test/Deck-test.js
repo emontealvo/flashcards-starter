@@ -26,9 +26,20 @@ describe('Deck', function() {
     const deck = new Deck ([card1, card2, card3, card4]);
 
     expect(deck.cardSet).to.be.an('array')
-  })
+    expect(deck.cardSet).to.deep.equal([card1, card2, card3, card4])
+  });
 
+  it('should be able to count set of cards', function() {
 
+    const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+    const card2 = new Card (2, "What is a comma-separated list of related values?", ["array", "object", "function"], "array");
+    const card3 = new Card (3, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean")
+    const card4 = new Card (4, "Which iteration method returns an array of the same length as the original array?", ["map()", "forEach()", "reduce()"], "map()")
+
+    const deck = new Deck ([card1, card2, card3, card4]);
+
+    expect(deck.countCards()).to.equal(4)
+  });
 });
 
 
