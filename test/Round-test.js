@@ -75,9 +75,8 @@ describe('Round', function () {
   it('should be an empty object if the deck has no cards', function() {
 
     const deck = new Deck ();
-    console.log(deck.cardSet)
     const round = new Round(deck);
-    console.log(round.deckAtHand)
+    
   
     expect(round.currentCard).to.deep.equal({})
   });
@@ -85,6 +84,17 @@ describe('Round', function () {
   // - [ ] returnCurrentCard: a methods that return the current card being played
         // Simple enough a method that return the currentCard at play, it may require to evenutally take the Turn class method of returnClass to 
         // change the curentCard as the user goes through the deck
+  it('should return the current card at play', function() {
+
+    const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+    const card2 = new Card (2, "What is a comma-separated list of related values?", ["array", "object", "function"], "array");
+    const deck = new Deck ([card1, card2]);
+    const round = new Round(deck);
+
+    expect(round.returnCurrentCard()).to.equal(round.deckAtHand.cardSet[0])
+  });
+
+  
 });
 
 
