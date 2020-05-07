@@ -37,7 +37,7 @@ describe('Round', function () {
     const deck = new Deck ([card1, card2, card3, card4]);
     const round = new Round(deck);
 
-    expect(round.deckAtHand).to.deep.equal(deck)
+    expect(round.deckAtHand).to.be.an.instanceof(Deck)
   });
 
   it('should only be initiated with a valid deck', function() {
@@ -57,7 +57,7 @@ describe('Round', function () {
 
     const round = new Round();
 
-    expect(round).to.have.property('currentCard', {})
+    expect(round).to.have.property('currentCard')
   });
 
   it('should begin with the deck\'s first card', function() {
@@ -69,26 +69,29 @@ describe('Round', function () {
     const deck = new Deck ([card1, card2, card3, card4]);
     const round = new Round(deck);
 
-    expect(round.currentCard).to.equal(deck.cardSet[0])
+    expect(round.currentCard).to.deep.equal(deck.cardSet[0])
   });
 
-  it('should only begin with if the deck has cards', function() {
+  it('should be an empty object if the deck has no cards', function() {
 
     const deck = new Deck ();
+    console.log(deck.cardSet)
     const round = new Round(deck);
+    console.log(round.deckAtHand)
   
     expect(round.currentCard).to.deep.equal({})
   });
 
+  // - [ ] returnCurrentCard: a methods that return the current card being played
+        // Simple enough a method that return the currentCard at play, it may require to evenutally take the Turn class method of returnClass to 
+        // change the curentCard as the user goes through the deck
 });
 
 
 // Round Class:
 
 
-// - [ ] returnCurrentCard: a methods that return the current card being played
-        // Simple enough a method that return the currentCard at play, it may require to evenutally take the Turn class method of returnClass to 
-        // change the curentCard as the user goes through the deck
+
 
 // - [ ] takeTurn: a method that updates turns count, evaluates guesses, gives feedback and stores ids of incorrect guesses:
     // The sublist is the biggest hint to a scoped function, so we'll look at each step individually 

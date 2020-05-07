@@ -29,7 +29,7 @@ describe('Deck', function() {
     expect(deck.cardSet).to.deep.equal([card1, card2, card3, card4])
   });
 
-  it('should be empty if no cards are given', function() {
+  it('should be an empty array if no cards are given', function() {
     const deck = new Deck();
     expect(deck.cardSet).to.deep.equal([])
   })
