@@ -94,7 +94,7 @@ describe('Round', function () {
 
     const round = new Round()
 
-    expect(round).to.have.property('incorrectGuesses', [])
+    expect(round.incorrectGuesses).to.deep.equal([])
   })
 
   describe('takeTurn method', function () {
