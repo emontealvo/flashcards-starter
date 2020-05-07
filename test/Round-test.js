@@ -17,17 +17,6 @@ describe('Round', function () {
     expect(round).to.be.an.instanceof(Round);
   });
 
-  // - [ ] currentCard should be the first Card in the Deck at the start of the Round
-            // I should take the first card instance within our cardSet inside the Deck class and set it to it's own property
-            // of currentCatd 
-            // This can still be broken down further...as it's making many assumptions
-            // first each round should include a deck of cards 
-            // this means to check for a deck property and have the deck be an instance of the Deck class 
-            // check for sad paths there (when deck is not an instance of Deck class what happens?) 
-           
-            // (separate test) it's value is an instanceOf Card 
-
-
   it('should be initiated with a deck', function() {
 
     const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
@@ -48,16 +37,11 @@ describe('Round', function () {
     expect(round.deckAtHand).to.deep.equal({});
   });
 
-   // then we must assert that that there is a currentCard property and 
-    // so what's our current card default value is the first card of our deck 
-    // we should check for the currentCard to be an instance of our Card class
-
-
   it('should have a current card at play', function() {
 
     const round = new Round();
 
-    expect(round).to.have.property('currentCard')
+    expect(round).to.have.property('cardAtPlay')
   });
 
   it('should begin with the deck\'s first card', function() {
@@ -69,7 +53,7 @@ describe('Round', function () {
     const deck = new Deck ([card1, card2, card3, card4]);
     const round = new Round(deck);
 
-    expect(round.currentCard).to.deep.equal(deck.cardSet[0])
+    expect(round.cardAtPlay).to.deep.equal(deck.cardSet[0])
   });
 
   it('should be an empty object if the deck has no cards', function() {
@@ -78,12 +62,9 @@ describe('Round', function () {
     const round = new Round(deck);
     
   
-    expect(round.currentCard).to.deep.equal({})
+    expect(round.cardAtPlay).to.deep.equal({})
   });
 
-  // - [ ] returnCurrentCard: a methods that return the current card being played
-        // Simple enough a method that return the currentCard at play, it may require to evenutally take the Turn class method of returnClass to 
-        // change the curentCard as the user goes through the deck
   it('should return the current card at play', function() {
 
     const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
@@ -91,42 +72,57 @@ describe('Round', function () {
     const deck = new Deck ([card1, card2]);
     const round = new Round(deck);
 
-    expect(round.returnCurrentCard()).to.equal(round.deckAtHand.cardSet[0])
+    expect(round.returnCardAtPlay()).to.equal(round.deckAtHand.cardSet[0])
   });
 
+  // - [ ] takeTurn: a method that holds a bunch of other methods:
   
+  // updates turns count,
+  // - - [ ] turn count is updated, regardless of wether guess is correct or not
+    // First we check that each round has default turn count of 0 
+    // Each time a turn instance is created a counter keeping track of the number of turns taken is updated
+    // this happens wheter the guess is correct or not, should be no problem if function is seperate from the check function. 
+    // I see three test default value, one turn and multiple turns 
+
+  
+  // - - [ ] When a guess is made, a new Turn instance is created.
+    // test:
+    // it should instantiate a new Turn with user guess and the round's current card
+    // two sad path test to check for resulting condition if either user guess is undefined or current card is an empty object
+
+  
+
+
+// gives feedback 
+    // - - [ ] Feedback is return; regarding wether the guess is incorrect or correct
+       // it should call on the turn class method to evaluate guess and return corresponding feedback
+    // this means two test to check for the two different conditions. 
+
+  
+  
+  // stores ids of incorrect guesses
+    // - - [ ] Guess is evaluated/recorded. Incorrect guess will be stored (via the id) in an array of incorrectGuesses 
+    // It should store incorrect guesses in an array by their id 
+    // first test - check incorrect guesses is an empty array by default
+    // second test - that it can record an incorrect guess by the id number inside that array
+    // third test - that it can do this with different cards (this test may come after the following test)
+
+
+
+  // finally, the next card on deck should become the currentCard
+    // - - [ ] The next card becomes current card
+
+    //  this should test that the card changes with each turn taken we can use variables to trace the change
+    //  one test would check that the card at play changes
+    //  a second test will check that the card is the card that follows on the deckAtHand array 
+    
+
+
+
 });
 
 
 // Round Class:
-
-
-
-
-// - [ ] takeTurn: a method that updates turns count, evaluates guesses, gives feedback and stores ids of incorrect guesses:
-    // The sublist is the biggest hint to a scoped function, so we'll look at each step individually 
-    // this method is just a gateway to call a bunch of other scoped fucnitons
-
-// - - [ ] When a guess is made, a new Turn instance is created.
-    // Each turn will instantiate a new Turn that will include the user's guess. 
-    // our turn instantiation alrady includes a test to check if user's guess is correct
-
-// - - [ ] turn count is updated, regardless of wether guess is correct or not
-    // Each time a turn instance is created a counter keeoing track of the number of turns taken is updated
-    // this happens wheter the guess is correct or not, should be no problem if function is seperate from the check function. 
-
-// - - [ ] The next card becomes current card
-    // After a turn is taken, the following card becomes the currewnt Card. does that mena that you do not guess on a card until 
-    //  you find the correct answer but rather after each turn you move to a new card, regardless of correct answer or not. 
-    // (and come back to that card later after all cards have had an attempted guess.) this would be an added functionality
-
-// - - [ ] Guess is evaluated/recorded. Incorrect guess will be stored (via the id) in an array of incorrectGuesses 
-    // Again, this hints to the fact that there are no multiple guesses on a card until all cards have had a go
-    // So, if the turn method that evaluates a user's guess return false (i.e "Incorrect!") the guess is recorded inside an array associated with thst card's id 
-    // Should that card now create a property with an array of all incorrect Guesses? We will see... 
-
-// - - [ ] Feedback is return; regarding wether the guess is incorrect or correct
-    // This means to actually log the results of our turn.evaluateGuess method 
 
 
 // - [ ] calculatePercentCorrect: a method that calculates and return the percentage of correct guesses

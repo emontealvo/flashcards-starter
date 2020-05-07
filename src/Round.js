@@ -3,11 +3,11 @@ const Deck = require('../src/Deck');
 class Round {
   constructor(deck) {
     this.deckAtHand = (deck instanceof Deck) ? deck : {};
-    this.currentCard = (deck instanceof Deck && deck.cardSet[0]) ? deck.cardSet[0] : {};
+    this.cardAtPlay = (deck instanceof Deck && this.deckAtHand.cardSet[0]) ? this.deckAtHand.cardSet[0] : {};
   }
 
-  returnCurrentCard() {
-    return this.currentCard
+  returnCardAtPlay() {
+    return this.cardAtPlay
   }
 }
 
