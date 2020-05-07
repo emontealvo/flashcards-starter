@@ -24,7 +24,7 @@ describe('Round', function () {
             // first each round should include a deck of cards 
             // this means to check for a deck property and have the deck be an instance of the Deck class 
             // check for sad paths there (when deck is not an instance of Deck class what happens?) 
-            // then we must assert that that there is a currentCard property and 
+           
             // (separate test) it's value is an instanceOf Card 
 
 
@@ -39,6 +39,47 @@ describe('Round', function () {
 
     expect(round.deckAtHand).to.deep.equal(deck)
   });
+
+  it('should only be initiated with a valid deck', function() {
+
+    const deck = 'A faded picture of a rooster running wild'
+    const round = new Round(deck);
+
+    expect(round.deckAtHand).to.deep.equal({});
+  });
+
+   // then we must assert that that there is a currentCard property and 
+    // so what's our current card default value is the first card of our deck 
+    // we should check for the currentCard to be an instance of our Card class
+
+
+  it('should have a current card at play', function() {
+
+    const round = new Round();
+
+    expect(round).to.have.property('currentCard', {})
+  });
+
+  it('should begin with the deck\'s first card', function() {
+
+    const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+    const card2 = new Card (2, "What is a comma-separated list of related values?", ["array", "object", "function"], "array");
+    const card3 = new Card (3, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean")
+    const card4 = new Card (4, "Which iteration method returns an array of the same length as the original array?", ["map()", "forEach()", "reduce()"], "map()")
+    const deck = new Deck ([card1, card2, card3, card4]);
+    const round = new Round(deck);
+
+    expect(round.currentCard).to.equal(deck.cardSet[0])
+  });
+
+  it('should only begin with if the deck has cards', function() {
+
+    const deck = new Deck ();
+    const round = new Round(deck);
+  
+    expect(round.currentCard).to.deep.equal({})
+  });
+
 });
 
 
