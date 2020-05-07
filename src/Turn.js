@@ -1,21 +1,25 @@
+const Card = require('../src/Card')
+
 class Turn {
   constructor (userGuess, currentCard) {
-    this.userGuess = userGuess
-    this.currentCard = currentCard
+    this.userGuess = (typeof userGuess === 'string') ? userGuess : ''
+    this.currentCard = (currentCard instanceof Card) ? currentCard : {};
   };
 
   returnGuess() {
-    return this.userGuess;
+    return (this.userGuess !== '') ? this.userGuess : 'Please, input a guess.';
   };
 
   returnCard() {
-    return this.currentCard
-  }
+    return (this.currentCard instanceof Card) ? this.currentCard : 'Please, input a card.'
+  };
 
   evaluateGuess() {
-    return (this.userGuess === this.currentCard.correctAnswer) ? 'Correct!' : 'Incorrect!';
-  }
-
+    let result = (this.returnGuess() !== this.userGuess) ? this.returnGuess()
+     : (this.returnCard() !== this.currentCard) ? this.returnCard()
+     : (this.userGuess === this.currentCard.correctAnswer) ? 'Correct!' : 'Incorrect!';
+     return result
+  };
 };
 
 module.exports = Turn;
