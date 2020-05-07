@@ -4,6 +4,7 @@ const expect = chai.expect;
 const Card = require('../src/Card');
 const Deck = require('../src/Deck');
 const Round = require('../src/Round');
+const Turn = require('../src/Turn')
 
 describe('Round', function () {
 
@@ -75,7 +76,56 @@ describe('Round', function () {
     expect(round.returnCardAtPlay()).to.equal(round.deckAtHand.cardSet[0])
   });
 
+  it('should have the ability to take a turn', function() {
+
+    const round = new Round() 
+    
+    expect(round.takeTurn).to.be.a('function');
+  })
+
+  it('should begin with zero turns taken', function() {
+
+    const round = new Round() 
+
+    expect(round).to.have.property('turnCount', 0);
+  })
+
+  it('should be able to store incorrect guesses', function() {
+
+    const round = new Round()
+
+    expect(round).to.have.property('incorrectGuesses', [])
+  })
+
+  describe('takeTurn method', function () {
+    
+    it('should create a turn instance', function() {
+
+      const round = new Round()
+
+      expect(round.takeTurn()).to.be.an.instanceof(Turn)
+    });
+
+    it('should increment the turn count after a turn is take', function() {
+
+      const round = new Round();
+      round.takeTurn()
+
+      expect(round.turnCount).to.equal(1)
+    });
+  
+    it('should increment the turn count after each turn is taken', function() {
+
+      const round = new Round();
+      round.takeTurn()
+      round.takeTurn()
+      round.takeTurn()
+
+      expect(round.turnCount).to.equal(3)
+    });
+  })
   // - [ ] takeTurn: a method that holds a bunch of other methods:
+ 
   
   // updates turns count,
   // - - [ ] turn count is updated, regardless of wether guess is correct or not
