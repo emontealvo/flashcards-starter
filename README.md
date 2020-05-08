@@ -1,79 +1,31 @@
-# FlashCards Starter Kit
+# FlashCards Fun Study Tool
 
-## Fork This Repo
+## Project Overview
 
-On the top right corner of this page, click the **Fork** button.
-
-## Setup
-
-Clone down the forked repo (from your GitHub). Since you don't want to name your project "flashcards-starter", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments):
-
-```bash
-git clone [remote-address] [what you want to name the repo]
-```
-
-Once you have cloned the repo, change into the directory and install the library dependencies. Run:
-
-```bash
-npm install
-```
-
-To verify that it is setup correctly, run `npm test` in your terminal. You should have 5 pending tests in your `Card` test file that show up.
-
-Running `node index.js` from the root of your project should result in the following message being displayed in your terminal: 
-
-```bash
-Node server running on port 3000
-```
-
-*Note that you will not need to you run your server until you are instantiating your `Game` class in Iteration 3. Prior to that, you should be using TDD to drive your code. You should check the functionality of your application by running your tests via `npm test`.*
+   I was given three and a half days to build an application that can run through the command line interaface (CLI). This application would contain a set of "flashcards"  each with a question the user should answer. After each guess, the user should receive feedback on their guess ("Correct!" or "Incorrect!"). Once a guess has been inputed for each flashcard, the study round is over and the user should receive feedback with the percentage of correct answers. These features should make use of five classes, which built on each other like so: Card > Deck > Turn > Round > Game. A test suite had to be created for each of those classes, but the first one (the Card Class). 
 
 
-## Where to Add Your Code
+## Learning Goals
 
-### JavaScript
+  For me, the project's main goal was aimed at creating a robust testing suite using TDD. Other goals were continue to increase familiarity with: ES6 classes, building modular, reusable code by following SRP, and other good developer practices.
+ 
+ 
+### Wins
 
-**Create all of your feature code files in the `src` directory.**
+  - I built a project board, and used it to lay the framework to this study tool.
+  - I focused on developing good TDD practices, by building a number of test before writing any code. 
+  - I explored different types of assertions, and how they may be subtly asking for different things.
+  - Overall, even though I was not able to deliver a finished study tool, I feel I developed a solid foundation on writing tests and using TDD. 
+  - I'm still genuinely excited to receive feedback.
+  
+### Challenges 
 
-We will be using the `module.exports` and `require` syntax to share code across files.
+  - So many assertion possibilities!!!! Finding which would check what I wanted, how I wanted it, was challenging.
+  - Similarly, being explicit of what I wanted to create. Where as before I created projects in a gradual organic process where data almost shaped itself according to my skills, I now had to make that process explicit. 
+  - For this module, I chose to be an SAB, a leadership role amongst cohort members, which comes with added responsibilities that take time. It made me realize that my time management is lacking the structure to effectively manage the work load. A win for another time...     
+  - In a nutshell, learning is tough... but I enjoyed exploring a new tool set. 
 
-## How to View Your Code in Action
 
-Once you are working through Iteration 3, you will want to start your server to test your functionality.
-In the terminal, run:
 
-```bash
-node index.js
-```
-
-When the game is functioning appropriately, you will be prompted for each question, have the opportunity to select an answer, and will be given feedback. You will be able to play through the entire deck of cards:
-
-![flash cards example gif](https://media.giphy.com/media/1zkb1q58eTiTH6D7wc/giphy.gif)
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `Round-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory. 
-
----
+#### This project is still a work in progress. 
+  
