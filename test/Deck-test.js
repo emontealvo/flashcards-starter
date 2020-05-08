@@ -42,8 +42,8 @@ describe('Deck', function() {
 
     const deck = new Deck ([card1, card2, card3, card4]);
 
-    expect(deck.cardSet).to.have.members([card1, card4])
-  })
+    expect(deck.cardSet).to.have.members([card1, card4]);
+  });
 
   it('should be able to count set of cards', function() {
 
@@ -54,21 +54,6 @@ describe('Deck', function() {
 
     const deck = new Deck ([card1, card2, card3, card4]);
 
-    expect(deck.countCards()).to.equal(4)
+    expect(deck.countCards()).to.equal(4);
   });
-
-
 });
-
-
-
-
-// - [ ] Should be initialized with an array of Card object
-      // this will be parameter and default value combo. No need to put it 
-      // the actual script since the test file does that for us. 
-
-// - [ ] Have an accompanying test file.
-      // It's where we are at, so hell yea!
-// - [ ] Should known how many cards are in the Deck
-    // this will be a method in it's own right deck.countCards() it will count the
-    // card inside the deck

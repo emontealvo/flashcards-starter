@@ -1,5 +1,5 @@
 const Deck = require('../src/Deck');
-const Turn = require('../src/Turn')
+const Turn = require('../src/Turn');
 
 class Round {
   constructor(deck) {
@@ -10,32 +10,32 @@ class Round {
   }
 
   returnCardAtPlay() {
-    return this.cardAtPlay
+    return this.cardAtPlay;
   }
 
   takeTurn(guess) {
     if (this.deckAtHand instanceof Deck) {
-      let result = this.evaluateUserGuess(guess)
-      this.storeIncorrectGuesses(result)
+      let result = this.evaluateUserGuess(guess);
+      this.storeIncorrectGuesses(result);
       this.updateCardAtPlay();
-      return result
+      return result;
     }
   }
 
   evaluateUserGuess(guess) {
     let turn = new Turn(guess, this.cardAtPlay);
-    return turn.evaluateGuess()
+    return turn.evaluateGuess();
   }
 
   storeIncorrectGuesses(result) {
     if (result === 'Incorrect!') {
-      this.incorrectGuesses.push(this.cardAtPlay.id)
+      this.incorrectGuesses.push(this.cardAtPlay.id);
     }
   }
 
   updateCardAtPlay() {
-    this.turnCount++
-    this.cardAtPlay = this.deckAtHand.cardSet[this.turnCount]
+    this.turnCount++;
+    this.cardAtPlay = this.deckAtHand.cardSet[this.turnCount];
   }
 }
 
