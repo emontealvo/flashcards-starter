@@ -13,13 +13,14 @@ class Round {
     return this.cardAtPlay
   }
 
-  takeTurn() {
-    let turn = new Turn();
-    this.turnCount++
+  takeTurn(guess) {
     if(this.deckAtHand instanceof Deck) {
+      let turn = new Turn(guess, this.cardAtPlay);
+      let result = turn.evaluateGuess()
+      this.turnCount++
       this.updateCardAtPlay();
+      return result
     }
-    return turn
   }
 
   updateCardAtPlay() {

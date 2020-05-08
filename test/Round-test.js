@@ -99,27 +99,32 @@ describe('Round', function () {
 
   describe('takeTurn method', function () {
     
-    it('should create a turn instance', function() {
-
-      const round = new Round()
-
-      expect(round.takeTurn()).to.be.an.instanceof(Turn)
-    });
-
     it('should increment the turn count after a turn is take', function() {
 
-      const round = new Round();
-      round.takeTurn()
+      const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+      const card2 = new Card (2, "What is a comma-separated list of related values?", ["array", "object", "function"], "array");
+      const card3 = new Card (3, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean")
+      const card4 = new Card (4, "Which iteration method returns an array of the same length as the original array?", ["map()", "forEach()", "reduce()"], "map()")
+      const deck = new Deck ([card1, card2, card3, card4]);
+      const round = new Round(deck);
+
+      round.takeTurn();
 
       expect(round.turnCount).to.equal(1)
     });
   
     it('should increment the turn count after each turn is taken', function() {
 
-      const round = new Round();
-      round.takeTurn()
-      round.takeTurn()
-      round.takeTurn()
+      const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+      const card2 = new Card (2, "What is a comma-separated list of related values?", ["array", "object", "function"], "array");
+      const card3 = new Card (3, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean")
+      const card4 = new Card (4, "Which iteration method returns an array of the same length as the original array?", ["map()", "forEach()", "reduce()"], "map()")
+      const deck = new Deck ([card1, card2, card3, card4]);
+      const round = new Round(deck);
+
+      round.takeTurn();
+      round.takeTurn();
+      round.takeTurn();
 
       expect(round.turnCount).to.equal(3)
     });
@@ -174,18 +179,6 @@ describe('Round', function () {
     // second test - that it can record an incorrect guess by the id number inside that array
     // third test - that it can do this with different cards (this test may come after the following test)
 
-    it('should be able to evaluate a guess', function() {
-
-      const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
-      const card2 = new Card (2, "What is a comma-separated list of related values?", ["array", "object", "function"], "array");
-      const card3 = new Card (3, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean")
-      const card4 = new Card (4, "Which iteration method returns an array of the same length as the original array?", ["map()", "forEach()", "reduce()"], "map()")
-      const deck = new Deck ([card1, card2, card3, card4]);
-      const round = new Round(deck);
-
-      expect(round.evaluateUsertGuess).to.be.a('function')
-    })
-
     it('should require a guess', function() {
 
       const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
@@ -195,7 +188,7 @@ describe('Round', function () {
       const deck = new Deck ([card1, card2, card3, card4]);
       const round = new Round(deck);
 
-      expect(round.takeTurn()).to.be.equal('Please, input a guess.')
+      expect(round.takeTurn()).to.equal('Please, input a guess.')
     });
 
     it('should require cards to be present', function() {
@@ -203,7 +196,7 @@ describe('Round', function () {
       const deck = new Deck ();
       const round = new Round(deck);
 
-      expect(round.takeTurn()).to.be.equal('Please, input a card.')
+      expect(round.takeTurn('array')).to.be.equal('Please, input a card.')
     });
 
     it('should evaluate if guess is correct', function() {
@@ -215,7 +208,7 @@ describe('Round', function () {
       const deck = new Deck ([card1, card2, card3, card4]);
       const round = new Round(deck);
 
-      expect(round.takeTurn()).to.be.equal('Correct!')
+      expect(round.takeTurn('object')).to.be.equal('Correct!')
     })
 
     it('should evaluate if guess is incorrect', function() {
@@ -227,7 +220,7 @@ describe('Round', function () {
       const deck = new Deck ([card1, card2, card3, card4]);
       const round = new Round(deck);
 
-      expect(round.takeTurn()).to.be.equal('Incorrect!')
+      expect(round.takeTurn('array')).to.be.equal('Incorrect!')
     })
 // gives feedback 
     // - - [ ] Feedback is return; regarding wether the guess is incorrect or correct
