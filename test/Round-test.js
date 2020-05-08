@@ -172,12 +172,6 @@ describe('Round', function () {
 
       expect(round.cardAtPlay).to.equal(round.deckAtHand.cardSet[3])
     });
-  });
- // - - [ ] Guess is evaluated/recorded. Incorrect guess will be stored (via the id) in an array of incorrectGuesses 
-    // It should store incorrect guesses in an array by their id 
-    // first test - check incorrect guesses is an empty array by default
-    // second test - that it can record an incorrect guess by the id number inside that array
-    // third test - that it can do this with different cards (this test may come after the following test)
 
     it('should require a guess', function() {
 
@@ -222,14 +216,52 @@ describe('Round', function () {
 
       expect(round.takeTurn('array')).to.be.equal('Incorrect!')
     })
-// gives feedback 
-    // - - [ ] Feedback is return; regarding wether the guess is incorrect or correct
-       // it should call on the turn class method to evaluate guess and return corresponding feedback
-    // this means two test to check for the two different conditions. 
 
+    it('should keep track of incorrect answers by their id number', function() {
 
-   
+      const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+      const card2 = new Card (2, "What is a comma-separated list of related values?", ["array", "object", "function"], "array");
+      const card3 = new Card (3, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean")
+      const card4 = new Card (4, "Which iteration method returns an array of the same length as the original array?", ["map()", "forEach()", "reduce()"], "map()")
+      const deck = new Deck ([card1, card2, card3, card4]);
+      const round = new Round(deck);
 
+      round.takeTurn('array')
+
+      expect(round.incorrectGuesses).to.include(1);
+    })
+
+    it('should only keep track of incorrect answer', function() {
+
+      const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+      const card2 = new Card (2, "What is a comma-separated list of related values?", ["array", "object", "function"], "array");
+      const card3 = new Card (3, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean")
+      const card4 = new Card (4, "Which iteration method returns an array of the same length as the original array?", ["map()", "forEach()", "reduce()"], "map()")
+      const deck = new Deck ([card1, card2, card3, card4]);
+      const round = new Round(deck);
+
+      round.takeTurn('object')
+      round.takeTurn('object')
+
+      expect(round.incorrectGuesses.length).to.equal(1);
+    })
+
+    it('should store multiple incorrect answers', function() {
+
+      const card1 = new Card (1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
+      const card2 = new Card (2, "What is a comma-separated list of related values?", ["array", "object", "function"], "array");
+      const card3 = new Card (3, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean")
+      const card4 = new Card (4, "Which iteration method returns an array of the same length as the original array?", ["map()", "forEach()", "reduce()"], "map()")
+      const deck = new Deck ([card1, card2, card3, card4]);
+      const round = new Round(deck);
+
+      round.takeTurn('object')
+      round.takeTurn('object')
+      round.takeTurn('object')
+
+      expect(round.incorrectGuesses).to.deep.equal([2, 3]);
+    })
+  });
 });
 
 
