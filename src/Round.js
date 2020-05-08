@@ -16,7 +16,14 @@ class Round {
   takeTurn() {
     let turn = new Turn();
     this.turnCount++
+    if(this.deckAtHand instanceof Deck) {
+      this.updateCardAtPlay();
+    }
     return turn
+  }
+
+  updateCardAtPlay() {
+    this.cardAtPlay = this.deckAtHand.cardSet[this.turnCount]
   }
 }
 

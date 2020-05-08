@@ -62,9 +62,7 @@ describe('Turn', function() {
     const turn2 = new Turn ('array', card2);
 
     expect(turn1.currentCard).to.equal(card1);
-    expect(turn1.currentCard).to.be.an.instanceof(Card);
     expect(turn2.currentCard).to.equal(card2);
-    expect(turn2.currentCard).to.be.an.instanceof(Card);
   });
 
   it('should be an empty object if no card is given', function() {
