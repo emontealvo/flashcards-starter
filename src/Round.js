@@ -14,16 +14,27 @@ class Round {
   }
 
   takeTurn(guess) {
-    if(this.deckAtHand instanceof Deck) {
-      let turn = new Turn(guess, this.cardAtPlay);
-      let result = turn.evaluateGuess()
-      this.turnCount++
+    if (this.deckAtHand instanceof Deck) {
+      let result = this.evaluateUserGuess(guess)
+      this.storeIncorrectGuesses(result)
       this.updateCardAtPlay();
       return result
     }
   }
 
+  evaluateUserGuess(guess) {
+    let turn = new Turn(guess, this.cardAtPlay);
+    return turn.evaluateGuess()
+  }
+
+  storeIncorrectGuesses(result) {
+    if (result === 'Incorrect!') {
+      this.incorrectGuesses.push(this.cardAtPlay.id)
+    }
+  }
+
   updateCardAtPlay() {
+    this.turnCount++
     this.cardAtPlay = this.deckAtHand.cardSet[this.turnCount]
   }
 }

@@ -263,21 +263,3 @@ describe('Round', function () {
     })
   });
 });
-
-
-// Round Class:
-
-
-// - [ ] calculatePercentCorrect: a method that calculates and return the percentage of correct guesses
-    // it should give back a number...
-    // What's the best way to check for the percentCorrect 
-    // we have an array with all the incorrect guesses made, so we use this length 
-    //  so percent would be ((totalCorrect / totalQuestions) * 100)
-    // totalCorrect also means totalQuestions - incorrectGuesses.length 
-
-
-
-// - [ ] endRound: method that prints the following to the console: '**Round Over** You answered <>% of the questions correctly!!'
-    // My guess is this get's invoked once we have gone through the entire deck of cards.
-    // it should take the return value of calculatePercentCorrect and return the above statement 
-
